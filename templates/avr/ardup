@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
+echo 'Compiled main.c'
+avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/core.o ./lib/easyavr/core.c
+echo 'Compiled ./lib/easyavr/core.c'
+avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/A4988.o ./lib/easyavr/A4988.c
+echo 'Compiled ./lib/easyavr/A4988.c'
+avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/A4988_interrups.o ./lib/easyavr/A4988_interrups.c
+echo 'Compiled ./lib/easyavr/A4988_interrups.c'
+
+avr-gcc -std=c11 -mmcu=atmega328p ./build/main.o ./build/core.o ./build/A4988.o ./build/A4988_interrups.o -o ./build/main
+echo 'linked .o files'
+avr-objcopy -O ihex -R .eeprom ./build/main ./build/main.hex
+echo 'converted linked output to .hex'
+avrdude -F -V -c arduino -p ATMEGA328P -P /dev/ttyACM0 -b 115200 -U flash:w:./build/main.hex

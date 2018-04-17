@@ -1,0 +1,8 @@
+%clang
+%c -std=gnu11
+%cpp -std=gnu++14
+-pthread
+
+# Includes
+-I/usr/lib/libavrdude.so
+-I/usr/avr/include
