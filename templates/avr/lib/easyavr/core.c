@@ -52,6 +52,16 @@ void togglePin(int pin) {
   *puerto ^= _BV(pinD[pin]);
 }
 
+int readDPin(int pin) {
+  int *Port = pin <= 7 ? (int *)&PIND : (int *)&PINB;
+  if (*Port & _BV(pinIn[pin])) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+
 #endif
 
 #ifdef ANALOG

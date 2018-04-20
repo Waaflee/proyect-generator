@@ -14,4 +14,7 @@ void pinOn(int pin);
 void pinOff(int pin);
 void togglePin(int pin);
 
+int readDPin(int pin);
+
+
 #endif
