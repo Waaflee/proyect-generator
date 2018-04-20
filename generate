@@ -1,15 +1,24 @@
 #!/bin/bash
 if [ "$1" == "--help" ] || [ -z "$1" ] || [ -z "$2" ]; then
-  echo "Usage generator [type] [proyect name]"
+  echo "Usage generator [type] [proyect name] <options>"
   echo "Aviable Generators types:"
   echo "    avr -> Basic AVR proyect with easyavr lib and git version control."
+  echo ""
+  echo "OPTIONS: "
+  echo "    --no-git 	: skips git repo creation"
 else
   mkdir $PWD/$2
+  shopt -s dotglob
   cp -ru ~/.scripts/templates/$1/* $PWD/$2
-  cd $PWD/$2
-  git init
-  git add .
-  git commit -a -m 'Initial Commit'
-  cd ..
+  
+	if [ "$3" == "--no-git" ]; then
+	  echo "-- no-git option, skipping git repo initialization..."
+	else 
+	  cd $PWD/$2	
+	  git init
+	  git add .
+	  git commit -a -m 'Initial Commit'
+	  cd ..
+	fi
   echo "Proyect $2 Created"
 fi
