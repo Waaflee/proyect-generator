@@ -5,7 +5,7 @@ if [ "$1" == "--help" ] || [ -z "$1" ]; then
   echo "    avr -> Basic AVR proyect with easyavr lib and git version control."
 else
   mkdir $PWD/$2
-  cp -r ~/.scripts/templates/$1/* $PWD/$2
+  cp -ru ~/.scripts/templates/$1/* $PWD/$2
   cd $PWD/$2
   git init
   git add .
