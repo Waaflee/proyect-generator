@@ -22,7 +22,7 @@ else
   else
     echo "no -git option, skipping git repo initialization..."
     cd $PWD/$2/lib
-    if [ -d ../.git ]; then
+    if [ -d ../.git ] || [ -d ../../.git ] || [ -d ../../../.git ]; then
       git submodule add git@github.com:Waaflee/AVRDuino.git
     else
       git clone git@github.com:Waaflee/AVRDuino.git
