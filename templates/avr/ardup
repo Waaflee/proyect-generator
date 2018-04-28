@@ -2,15 +2,15 @@
 if [ ! -d build ]; then
 	echo "Creating build/ dir..."
 	mkdir build
-fi 
+fi
 avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
 echo 'Compiled main.c'
-avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/core.o ./lib/easyavr/core.c
-echo 'Compiled ./lib/easyavr/core.c'
-avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/A4988.o ./lib/easyavr/A4988.c
-echo 'Compiled ./lib/easyavr/A4988.c'
-avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/A4988_interrups.o ./lib/easyavr/A4988_interrups.c
-echo 'Compiled ./lib/easyavr/A4988_interrups.c'
+avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/core.o ./lib/AVRDuino/core.c
+echo 'Compiled ./lib/AVRDuino/core.c'
+avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/A4988.o ./lib/AVRDuino/A4988.c
+echo 'Compiled ./lib/AVRDuino/A4988.c'
+avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/A4988_interrups.o ./lib/AVRDuino/A4988_interrups.c
+echo 'Compiled ./lib/AVRDuino/A4988_interrups.c'
 
 avr-gcc -std=c11 -mmcu=atmega328p ./build/main.o ./build/core.o ./build/A4988.o ./build/A4988_interrups.o -o ./build/main
 echo 'linked .o files'
