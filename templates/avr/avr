@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z $1 ]; then 
+if [ -z $1 ]; then
 	echo "Usage: avr [operation]"
 	echo "OPERATIONS:"
 	echo "		new 	: Generate new files (only headers currently)"
@@ -7,7 +7,7 @@ if [ -z $1 ]; then
 fi
 
 if [ "$1" == "new" ]; then
-	select wen in "header" 
+	select wen in "header"
 	do
 		case "$wen" in
 		  header)
@@ -27,9 +27,13 @@ if [ "$1" == "new" ]; then
 	echo "Done!"
 fi
 
+# if [ "$1" == "update" ]; then
+# 	cd ~/.scripts
+# 	git pull
+# 	cp -ru templates/avr/lib/easyavr/* $OLDPWD/lib/easyavr
+# 	cd -
+# fi
+
 if [ "$1" == "update" ]; then
-	cd ~/.scripts
-	git pull
-	cp -ru templates/avr/lib/easyavr/* $OLDPWD/lib/easyavr
-	cd -
+	git submodule update --remote
 fi
