@@ -9,6 +9,9 @@
 // int pinD[] = {PORTD0, PORTD1, PORTD2, PORTD3, PORTD4, PORTD5, PORTD6,
 //               PORTD7, PORTB0, PORTB1, PORTB2, PORTB3, PORTB4, PORTB5};
 
+uint8_t pinIn[] = {PIND0, PIND1, PIND2, PIND3, PIND4, PIND5, PIND6,
+                   PIND7, PINB0, PINB1, PINB2, PINB3, PINB4, PINB5};
+
 int pinout[] = {0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5};
 int pinD[] = {0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5};
 
@@ -60,7 +63,6 @@ int readDPin(int pin) {
     return 0;
   }
 }
-
 
 #endif
 
