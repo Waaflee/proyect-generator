@@ -10,6 +10,8 @@ else
   mkdir $PWD/$2
   shopt -s dotglob
   cp -ru ~/.scripts/templates/$1/* $PWD/$2
+  if [ "$1" == "avr" ]; then
+
   if [ "$3" == "--git" ]; then
     cd $PWD/$2
     git init
@@ -28,5 +30,6 @@ else
       git clone git@github.com:Waaflee/AVRDuino.git
     fi
   fi
+fi
   echo "Proyect $2 Created"
 fi
