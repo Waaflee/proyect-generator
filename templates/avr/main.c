@@ -13,7 +13,12 @@
 #define FALSE 0
 #define TRUE 1
 
+FILE uart_io = FDEV_SETUP_STREAM(uecho, uread, _FDEV_SETUP_RW);
+
 int main(void) {
+  stdout = stdin = &uart_io;
+  UARTcount = 0;
+  UART_init();
   //DriveArray STPArray1 = {2, 3, 4, 0, 0, 0, 1.8, 30};
   //pololu STP1 = newPololuFA(STPArray1);
   //STEPPER PAP1;
@@ -27,5 +32,6 @@ int main(void) {
     togglePin(13);
     _delay_ms(500);
   }
+  return 0;
 }
 

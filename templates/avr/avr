@@ -19,7 +19,7 @@ if [ "$1" == "new" ]; then
 		      mkdir ./lib/custom
 		    fi
 		    echo "#pragma once" >> ./lib/custom/"$word".h
-		    echo "#import $word.h" >> ./lib/custom/"$word".c
+		    echo "#include \"$word.h\"" >> ./lib/custom/"$word".c
 		    echo "remember to add ./lib/custom/$word.c to ardup script"
 		esac
 		break
