@@ -1,16 +1,25 @@
 #!/bin/zsh
+
+files=( core A4988 A4988_interrups uart )
+customfiles=( )
+
 if [ ! -d build ]; then
 	echo "Creating build/ dir..."
 	mkdir build
 fi
-avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
+
+avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
 echo 'Compiled main.c'
 
-files=( core A4988 A4988_interrups uart)
- 
+
 for filename in $files; do
-	avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/AVRDuino/"$filename".c
+	avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/AVRDuino/"$filename".c
 	echo Compiled .lib/AVRDuino/"$filename".c
+done
+
+for filename in $customfiles; do
+	avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/custom/"$filename".c
+	echo Compiled .lib/custom/"$filename".c
 done
 
 avr-gcc -std=c11 -mmcu=atmega328p ./build/*.o -o ./build/main
