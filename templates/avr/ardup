@@ -6,7 +6,7 @@ fi
 avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
 echo 'Compiled main.c'
 
-files=( core A4988 A4988_interrups )
+files=( core A4988 A4988_interrups uart)
  
 for filename in $files; do
 	avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/AVRDuino/"$filename".c
