@@ -13,25 +13,25 @@ else
 
   if [ "$1" == "avr" ]; then
 
-	  if [ "$3" == "--git" ]; then
-	    cd $PWD/$2
-	    git init
-	    cd lib
-	    git submodule add git@github.com:Waaflee/AVRDuino.git
-	    cd ..
-	    git add .
-	    git commit -a -m 'Initial Commit'
-	    cd ..
-	  else
-	    echo "no -git option, skipping git repo initialization..."
-	    cd $PWD/$2/lib
-	    if [ -d ../.git ] || [ -d ../../.git ] || [ -d ../../../.git ]; then
-	      git submodule add git@github.com:Waaflee/AVRDuino.git
-	    else
-	      git clone git@github.com:Waaflee/AVRDuino.git
-	    fi
-	  fi
-
+    if [ "$3" == "--git" ]; then
+      cd $PWD/$2
+      git init
+      cd lib
+      git submodule add git@github.com:Waaflee/AVRDuino.git
+      cd ..
+      git add .
+      git commit -a -m 'Initial Commit'
+      cd ..
+    else
+      echo "no -git option, skipping git repo initialization..."
+      cd $PWD/$2/lib
+      if [ -d ../.git ] || [ -d ../../.git ] || [ -d ../../../.git ]; then
+        git submodule add git@github.com:Waaflee/AVRDuino.git
+      else
+        git clone git@github.com:Waaflee/AVRDuino.git
+      fi
+    fi
+    
 fi
   echo "Proyect $2 Created"
 fi
