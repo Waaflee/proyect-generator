@@ -8,17 +8,17 @@ if [ ! -d build ]; then
 	mkdir build
 fi
 
-avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
+avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
 echo 'Compiled main.c'
 
 
 for filename in $files; do
-	avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/AVRDuino/"$filename".c
+	avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/AVRDuino/"$filename".c
 	echo Compiled .lib/AVRDuino/"$filename".c
 done
 
 for filename in $customfiles; do
-	avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/custom/"$filename".c
+	avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/custom/"$filename".c
 	echo Compiled .lib/custom/"$filename".c
 done
 
