@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-files=( core A4988 A4988_interrups uart )
+files=( core A4988 A4988_interrupts uart )
 customfiles=( )
 
 if [ ! -d build ]; then
@@ -27,4 +27,3 @@ echo 'linked .o files'
 avr-objcopy -O ihex -R .eeprom ./build/main ./build/main.hex
 echo 'converted linked output to .hex'
 avrdude -F -V -c arduino -p ATMEGA328P -P /dev/ttyACM0 -b 115200 -U flash:w:./build/main.hex
-
