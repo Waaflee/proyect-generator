@@ -14,7 +14,7 @@ if [ "$1" == "new" ]; then
 		    echo "Header name?"
 		    read word
 		    if [ -d ./lib/custom ]; then
-		      echo "lib/custom directory already exists skipping..."
+		      echo "lib/custom directory already exists..."
 		    else
 		      mkdir ./lib/custom
 		    fi
