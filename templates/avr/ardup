@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-files=( core A4988 uart timers pwm )
+files=( core A4988 uart timers pwm interrupts )
 customfiles=( command_interpreter )
 
 
@@ -9,8 +9,10 @@ if [ ! -d build ]; then
 	mkdir build
 fi
 
-echo 'Cleaning previous build files...'
-rm -rf build/*
+if [ -d build ]; then
+	echo 'Cleaning previous build files...'
+	rm -rf build/*
+fi
 
 avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
 echo 'Compiled main.c'

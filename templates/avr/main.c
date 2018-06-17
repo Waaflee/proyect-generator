@@ -1,7 +1,9 @@
 #include "./lib/AVRDuino/A4988.h"
-#include "./lib/AVRDuino/A4988_interrupts.h"
 #include "./lib/AVRDuino/core.h"
 #include "./lib/AVRDuino/uart.h"
+#include "./lib/AVRDuino/pwm.h"
+#include "./lib/AVRDuino/timers.h"
+#include "./lib/AVRDuino/interrupts.h"
 #include "lib/custom/command_interpreter.h"
 #include <util/delay.h>
 
