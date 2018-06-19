@@ -3,6 +3,6 @@
 #include "../AVRDuino/uart.h"
 #include "../AVRDuino/A4988.h"
 #include "../AVRDuino/timers.h"
-#include "../AVRDuino/interrupts.h"
 
+void help();
 void checkData(char data[]);
