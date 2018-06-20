@@ -17,6 +17,7 @@ int main(void) {
   // STEPPER PAP1;
   // PAP1.motor = &STP1;
   // PAP1.enabled = 0;
+  // PAP1.ID = 0;
   // PAParray[0] = &PAP1;
 
   setPin(13, OUTPUT);
