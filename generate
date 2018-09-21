@@ -3,6 +3,7 @@ if [ "$1" == "--help" ] || [ -z "$1" ] || [ -z "$2" ]; then
   echo "Usage generator [type] [proyect name] <options>"
   echo "Aviable Generators types:"
   echo "    avr -> Basic AVR proyect with AVRDuino lib and git version control."
+  echo "    maraton -> Python Excersise with tests for programming marathons"
   echo ""
   echo "OPTIONS: "
   echo "    --git 	: git repo creation"

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+for file in test*; do
+  echo "testing with $file"
+  python main.py < $file > resultado_$file
+  should="$(cat shouldbe_$file)"
+  is="$(cat resultado_$file)"
+  if [[ $should == $is ]]; then
+    echo "      Test susccesfull"
+  else
+    echo "      Test Failed"
+    diff -y shouldbe_$file resultado_$file
+  fi
+done
