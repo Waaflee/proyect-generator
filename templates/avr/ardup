@@ -1,24 +1,30 @@
 #!/bin/zsh
 
-files=( core A4988 A4988_interrups uart )
-customfiles=( )
+files=( core A4988 uart timers pwm interrupts )
+customfiles=( command_interpreter )
+
 
 if [ ! -d build ]; then
 	echo "Creating build/ dir..."
 	mkdir build
 fi
 
-avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
+if [ -d build ]; then
+	echo 'Cleaning previous build files...'
+	rm -rf build/*
+fi
+
+avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/main.o main.c
 echo 'Compiled main.c'
 
 
 for filename in $files; do
-	avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/AVRDuino/"$filename".c
+	avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/AVRDuino/"$filename".c
 	echo Compiled .lib/AVRDuino/"$filename".c
 done
 
 for filename in $customfiles; do
-	avr-gcc -std=c11 -O3 -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/custom/"$filename".c
+	avr-gcc -std=c11 -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o ./build/"$filename".o ./lib/custom/"$filename".c
 	echo Compiled .lib/custom/"$filename".c
 done
 
@@ -27,4 +33,3 @@ echo 'linked .o files'
 avr-objcopy -O ihex -R .eeprom ./build/main ./build/main.hex
 echo 'converted linked output to .hex'
 avrdude -F -V -c arduino -p ATMEGA328P -P /dev/ttyACM0 -b 115200 -U flash:w:./build/main.hex
-
